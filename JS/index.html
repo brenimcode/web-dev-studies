@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Nota</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Informe uma nota</h1>
+    <button id="pedirNota">Clique para inserir a nota</button>
+    <p id="mensagem"></p>
+
+    <script>
+
+        document.getElementById('pedirNota').addEventListener('click', function() {
+            
+            let nota;
+
+            do {
+                nota = prompt("Digite uma nota entre 0 e 10:");
+                // Converte a entrada para número
+                nota = parseInt(nota);
+
+                // Verifica se a nota está dentro do intervalo válido
+                if (nota >= 0 && nota <= 10) {
+                    document.getElementById('mensagem').textContent = "Nota válida: " + nota;
+                    break; // Sai do loop se a nota for válida
+                } else {
+                    alert("Valor inválido! Por favor, insira uma nota entre 0 e 10.");
+                }
+            } while(!(nota >= 0 && nota <= 10));
+
+        });
+
+    </script>
+
+</body>
+</html>

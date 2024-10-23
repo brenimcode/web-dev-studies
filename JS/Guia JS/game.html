@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da velha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10%;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Bem-vindo ao jogo da velha!!</h1>
+    <h3>Faça sua escolha!</h3>
+    <button id="pedra">Pedra</button>
+    <button id="papel">Papel</button>
+    <button id="tesoura">Tesoura</button>
+    <h3>Escolha do BOT:</h3>
+    <h2 id="bot"></h2>
+
+    <h3>Resultado</h3>
+    <h2 id="mensagem"></h2>
+
+    <script>
+        function jogada() {
+            let j = ['rock', 'paper', 'scissors'];
+            let num = Math.floor(Math.random() * 3);
+            return j[num]; // Use num to access the array
+        }
+    
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                return 'Empate!';
+            } else if (humanChoice === 'rock') {
+                return computerChoice === 'scissors' ? 'Human Win!' : 'Bot Win!';
+            } else if (humanChoice === 'paper') {
+                return computerChoice === 'rock' ? 'Human Win!' : 'Bot Win!';
+            } else if (humanChoice === 'scissors') {
+                return computerChoice === 'paper' ? 'Human Win!' : 'Bot Win!';
+            }
+        }
+    
+        function play_game(humanChoice) {
+            let bot_jogada = jogada();
+            let resultado = playRound(humanChoice,bot_jogada);
+            let msg = document.getElementById('mensagem');
+            msg.innerHTML = resultado;
+            let bot = document.getElementById('bot');
+            bot.innerHTML = bot_jogada;
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            let pedra = document.getElementById('pedra');
+            let papel = document.getElementById('papel');
+            let tesoura = document.getElementById('tesoura');
+    
+            pedra.addEventListener('click', function() {
+                play_game('rock');
+            });
+            
+            papel.addEventListener('click', function() {
+                play_game('paper');
+            });
+            
+            tesoura.addEventListener('click', function() {
+                play_game('scissors');
+            });
+        });
+    </script>
+    
+
+</body>
+
+</html>
